@@ -28,4 +28,22 @@ public class AnnouncementService {
         Optional<Announcement> optional = announcementRepository.findById(id);
         return optional.orElse(null);
     }
+
+    public void updateAnnouncement(Long id, Announcement updatedAnnouncement) {
+        Optional<Announcement> optional = announcementRepository.findById(id);
+        if (optional.isPresent()) {
+            Announcement existingAnnouncement = optional.get();
+            existingAnnouncement.setTitle(updatedAnnouncement.getTitle());
+            existingAnnouncement.setContent(updatedAnnouncement.getContent());
+            existingAnnouncement.setPublishDate(updatedAnnouncement.getPublishDate());
+            if (updatedAnnouncement.getFileData() != null) {
+                existingAnnouncement.setFileName(updatedAnnouncement.getFileName());
+                existingAnnouncement.setFileData(updatedAnnouncement.getFileData());
+            }
+            announcementRepository.save(existingAnnouncement);
+        }
+    }
+
+
+
 }

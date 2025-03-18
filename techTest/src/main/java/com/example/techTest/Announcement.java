@@ -1,6 +1,7 @@
 package com.example.techTest;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -18,8 +19,10 @@ public class Announcement {
     @Column(name = "author")
     private String author;
     @Column(name = "publish_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publishDate;
     @Column(name = "expire_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate expireDate;
 
     @Lob
